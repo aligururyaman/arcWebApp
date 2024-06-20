@@ -8,7 +8,7 @@ function Header() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <h1 className="text-4xl font-semibold  border-accent">Glam <span className="text-accent">Arc</span>hitecture<span className="text-accent">.</span></h1>
+          <h1 className="text-4xl font-semibold  border-accent">Glam <span className="text-accent">Arc</span>hitecture Design<span className="text-accent">.</span></h1>
         </Link>
 
         {/* navbar buraya gelecek */}
