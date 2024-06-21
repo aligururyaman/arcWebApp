@@ -25,7 +25,6 @@ export default function Home() {
         <Image src={mainMobile} height={900} />
       </div>
       <div>
-        <Footer />
       </div>
     </main>
   );

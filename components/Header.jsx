@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "./ui/button"
 import Nav from "./Nav"
+import Footer from "./Footer"
 
 function Header() {
   return (
@@ -23,7 +24,9 @@ function Header() {
           Mobile Nav
         </div>
       </div>
+
     </header>
+
   )
 }
 
