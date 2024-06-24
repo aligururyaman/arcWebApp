@@ -9,10 +9,12 @@ import { Card, CardContent } from '@/components/ui/card';
 
 function Project() {
   const [fadeIn, setFadeIn] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedIcMekanProject, setSelectedIcMekanProject] = useState(null);
+  const [selectedDisMekanProject, setSelectedDisMekanProject] = useState(null);
   const [icMekanProjects, setIcMekanProjects] = useState([]);
   const [disMekanProjects, setDisMekanProjects] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isIcMekanModalOpen, setIsIcMekanModalOpen] = useState(false);
+  const [isDisMekanModalOpen, setIsDisMekanModalOpen] = useState(false);
 
   useEffect(() => {
     setFadeIn(true);
@@ -30,18 +32,27 @@ function Project() {
     setDisMekanProjects(disMekanProjects);
 
     if (icMekanProjects.length > 0) {
-      setSelectedProject(icMekanProjects[0]);
-    } else if (disMekanProjects.length > 0) {
-      setSelectedProject(disMekanProjects[0]);
+      setSelectedIcMekanProject(icMekanProjects[0]);
+    }
+    if (disMekanProjects.length > 0) {
+      setSelectedDisMekanProject(disMekanProjects[0]);
     }
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openIcMekanModal = () => {
+    setIsIcMekanModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeIcMekanModal = () => {
+    setIsIcMekanModalOpen(false);
+  };
+
+  const openDisMekanModal = () => {
+    setIsDisMekanModalOpen(true);
+  };
+
+  const closeDisMekanModal = () => {
+    setIsDisMekanModalOpen(false);
   };
 
   return (
@@ -51,17 +62,17 @@ function Project() {
       </div>
       <div className='flex flex-row w-full space-y-16'>
         <div className='h-[40rem] m-16'>
-          <ProjectComp projects={icMekanProjects} onSelect={setSelectedProject} />
+          <ProjectComp projects={icMekanProjects} onSelect={setSelectedIcMekanProject} />
         </div>
-        <div className='p-4 h-[40rem] flex flex-col justify-between m-16'>
-          {selectedProject && selectedProject.mekan === 'icmekan' && (
-            <div>
-              <h2 className='text-2xl mb-4'>{selectedProject.title}</h2>
-              <p>{selectedProject.desc}</p>
+        <div className='p-4 h-[40rem] flex flex-col justify-between m-16 w-full'>
+          {selectedIcMekanProject && selectedIcMekanProject.mekan === 'icmekan' && (
+            <div className=''>
+              <h2 className='text-2xl mb-4'>{selectedIcMekanProject.title}</h2>
+              <p>{selectedIcMekanProject.desc}</p>
             </div>
           )}
           <div className='flex justify-end mt-auto'>
-            <Button variant="ghost" className='bg-gray-400 hover:text-accent transition-all' onClick={openModal}>Projeyi Gör</Button>
+            <Button variant="ghost" className='bg-gray-400 hover:text-accent transition-all' onClick={openIcMekanModal}>Projeyi Gör</Button>
           </div>
         </div>
       </div>
@@ -70,25 +81,31 @@ function Project() {
         <h1 className='text-3xl'>Dış Mekan.</h1>
       </div>
       <div className='flex flex-row w-full space-y-16'>
-        <div className='p-4 h-[40rem] flex flex-col justify-between m-16'>
-          {selectedProject && selectedProject.mekan === 'disMekan' && (
+        <div className='p-4 h-[40rem] flex flex-col justify-between m-16  w-full'>
+          {selectedDisMekanProject && selectedDisMekanProject.mekan === 'disMekan' && (
             <div>
-              <h2 className='text-2xl mb-4'>{selectedProject.title}</h2>
-              <p>{selectedProject.desc}</p>
+              <h2 className='text-2xl mb-4'>{selectedDisMekanProject.title}</h2>
+              <p>{selectedDisMekanProject.desc}</p>
             </div>
           )}
           <div className='flex justify-end mt-auto'>
-            <Button variant="ghost" className='bg-gray-400 hover:text-accent transition-all' onClick={openModal}>Projeyi Gör</Button>
+            <Button variant="ghost" className='bg-gray-400 hover:text-accent transition-all' onClick={openDisMekanModal}>Projeyi Gör</Button>
           </div>
         </div>
         <div className='h-[40rem] m-16'>
-          <ProjectComp projects={disMekanProjects} onSelect={setSelectedProject} />
+          <ProjectComp projects={disMekanProjects} onSelect={setSelectedDisMekanProject} />
         </div>
       </div>
 
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <ProjectCarousel project={selectedProject} />
+      {isIcMekanModalOpen && (
+        <Modal onClose={closeIcMekanModal}>
+          <ProjectCarousel project={selectedIcMekanProject} />
+        </Modal>
+      )}
+
+      {isDisMekanModalOpen && (
+        <Modal onClose={closeDisMekanModal}>
+          <ProjectCarousel project={selectedDisMekanProject} />
         </Modal>
       )}
     </div>
