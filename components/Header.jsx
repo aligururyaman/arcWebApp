@@ -6,7 +6,7 @@ import Footer from "./Footer"
 function Header() {
   return (
     <header className="py-8 xl:py-12 text-white ">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center ">
         {/* Logo */}
         <Link href="/">
           <h1 className="text-4xl font-semibold  border-accent">Glam <span className="text-accent">Arc</span>hitecture Design<span className="text-accent">.</span></h1>
