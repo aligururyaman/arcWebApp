@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import mainTop from "./utils/mainTop.png"
 import mainMobile from "./utils/mobile.png"
 import mainBg from "./utils/glam.jpg"
 
@@ -15,10 +14,6 @@ export default function Home() {
 
   return (
     <main className='xl:px-24 px-5'>
-      {/* <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'} xl:py-10 xl:mx-20 py-12 absolute bg-primary opacity-40 rounded-xl`}>
-        <h1 className='text-6xl'>Yeni Nesil Mimarlık...</h1>
-      </div> */}
-
       <div className='absolute p-28'>
         <div className='w-[40rem] h-[40rem] bg-accent absolute rounded-full opacity-60'>
         </div>
@@ -35,7 +30,6 @@ export default function Home() {
       </div>
       <div>
       </div>
-
     </main>
   );
 }
