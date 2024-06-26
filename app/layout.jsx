@@ -2,7 +2,7 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Providers } from "@/redux/provider";
+import { LoginProvider } from "./LoginContext";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800"], variable: '--font-jetbrainsMono' });
 
@@ -16,11 +16,11 @@ export default function RootLayout({ children }) {
 
     <html lang="en" className="h-full">
       <body className={`${jetBrainsMono.variable} flex flex-col min-h-screen`}>
-        <Header />
-        <Providers>
+        <LoginProvider>
+          <Header />
           {children}
-        </Providers>
-        <Footer />
+          <Footer />
+        </LoginProvider>
       </body>
     </html>
   );

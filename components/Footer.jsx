@@ -13,12 +13,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLogin } from '@/app/LoginContext';
 
 function Footer() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [fadeIn, setFadeIn] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { isLogin, setIsLogin } = useLogin();
   const router = useRouter();
 
   const handleLogin = () => {
@@ -26,7 +28,8 @@ function Footer() {
     const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
     if (userName === adminUsername && password === adminPassword) {
-      setIsDialogOpen(false);  // Dialogu kapat
+      setIsLogin(true);
+      setIsDialogOpen(false);
       router.push('/adminPanel');
     } else {
       alert("Yanlış kullanıcı adı veya şifre!");

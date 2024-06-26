@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { db, storage } from '@/firebaseConfig';
+import { useRouter } from 'next/navigation';
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from '@/components/ui/textarea';
+import { useLogin } from '../LoginContext';
 
 function AdminPanel() {
   const [fadeIn, setFadeIn] = useState(false);
@@ -24,11 +26,15 @@ function AdminPanel() {
   const [files, setFiles] = useState(Array(5).fill(null));
   const [mekan, setMekan] = useState("");
   const [projects, setProjects] = useState([]);
+  const { isLogin, setIsLogin } = useLogin();
+  const router = useRouter();
 
   useEffect(() => {
     setFadeIn(true);
-    fetchProjects();
-  }, []);
+    if (isLogin) {
+      fetchProjects();
+    }
+  }, [isLogin]);
 
   const fetchProjects = async () => {
     const querySnapshot = await getDocs(collection(db, "adminData"));
@@ -84,66 +90,74 @@ function AdminPanel() {
 
   return (
     <div className='mt-10'>
-      <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'} px-16 my-10`}>
-        <h1 className='text-3xl'>Admin Panel.</h1>
-      </div>
-      <div className='flex flex-row border-2 border-accent'>
-        <div className='h-[30rem] w-[30rem] m-16'>
-          <div className='w-96 flex flex-col space-y-7'>
-            <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
-              <h1 className='text-3xl'>Resimler</h1>
-            </div>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Input
-                key={index}
-                className="text-black"
-                type="file"
-                onChange={(e) => handleFileChange(index, e.target.files[0])}
-              />
-            ))}
+      {isLogin ? (
+        <>
+          <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'} px-16 my-10`}>
+            <h1 className='text-3xl'>Admin Panel.</h1>
           </div>
-        </div>
-        <div className='h-[30rem] w-[30rem] m-16'>
-          <div className='w-96 flex flex-col space-y-7'>
-            <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
-              <h1 className='text-3xl'>Bilgiler</h1>
-            </div>
-            <Select onValueChange={setMekan}>
-              <SelectTrigger className="w-[180px] text-black">
-                <SelectValue placeholder="Mekan Seç." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Mekan Seç.</SelectLabel>
-                  <SelectItem value="icmekan">İç Mekan</SelectItem>
-                  <SelectItem value="disMekan">Dış Mekan</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <Input className="text-black" type="text" placeholder="Başlık" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Textarea className="text-black" placeholder="Açıklama" value={desc} onChange={(e) => setDesc(e.target.value)} />
-          </div>
-        </div>
-        <div className='h-[30rem] w-[30rem] m-16'>
-          <div className='w-96 flex flex-col space-y-7'>
-            <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
-              <h1 className='text-3xl'>Projeler</h1>
-            </div>
-            <div className='flex flex-col gap-2'>
-              {projects.map(project => (
-                <div key={project.id} className="flex justify-between items-center">
-                  <span>{project.title}</span>
-                  <Button variant="destructive" onClick={() => handleDelete(project.id)}>Sil</Button>
+          <div className='flex flex-row border-2 border-accent'>
+            <div className='h-[30rem] w-[30rem] m-16'>
+              <div className='w-96 flex flex-col space-y-7'>
+                <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+                  <h1 className='text-3xl'>Resimler</h1>
                 </div>
-              ))}
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Input
+                    key={index}
+                    className="text-black"
+                    type="file"
+                    onChange={(e) => handleFileChange(index, e.target.files[0])}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='h-[30rem] w-[30rem] m-16'>
+              <div className='w-96 flex flex-col space-y-7'>
+                <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+                  <h1 className='text-3xl'>Bilgiler</h1>
+                </div>
+                <Select onValueChange={setMekan}>
+                  <SelectTrigger className="w-[180px] text-black">
+                    <SelectValue placeholder="Mekan Seç." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Mekan Seç.</SelectLabel>
+                      <SelectItem value="icmekan">İç Mekan</SelectItem>
+                      <SelectItem value="disMekan">Dış Mekan</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <Input className="text-black" type="text" placeholder="Başlık" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <Textarea className="text-black" placeholder="Açıklama" value={desc} onChange={(e) => setDesc(e.target.value)} />
+              </div>
+            </div>
+            <div className='h-[30rem] w-[30rem] m-16'>
+              <div className='w-96 flex flex-col space-y-7'>
+                <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+                  <h1 className='text-3xl'>Projeler</h1>
+                </div>
+                <div className='flex flex-col gap-2'>
+                  {projects.map(project => (
+                    <div key={project.id} className="flex justify-between items-center">
+                      <span>{project.title}</span>
+                      <Button variant="destructive" onClick={() => handleDelete(project.id)}>Sil</Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
+          <div className="flex justify-end space-x-4 mt-4">
+            <Button variant="destructive" onClick={() => setIsLogin(false)}>Çıkış</Button>
+            <Button variant="secondary" onClick={handleSubmit}>Kaydet</Button>
+          </div>
+        </>
+      ) : (
+        <div className='mt-10 text-center'>
+          <h1 className='text-3xl'>Yetkisiz giriş</h1>
         </div>
-      </div>
-      <div className="flex justify-end space-x-4 mt-4">
-        <Button variant="destructive" onClick={() => setIsLoggedIn(false)}>Çıkış</Button>
-        <Button variant="secondary" onClick={handleSubmit}>Kaydet</Button>
-      </div>
+      )}
     </div>
   );
 }
