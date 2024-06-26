@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from './ui/button';
 import {
   Dialog,
   DialogContent,
@@ -14,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLogin } from '@/app/LoginContext';
+import { Button } from './ui/button';
 
 function Footer() {
   const [userName, setUserName] = useState("");
