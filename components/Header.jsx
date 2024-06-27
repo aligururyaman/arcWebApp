@@ -62,7 +62,6 @@ function Header() {
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
-              <DropdownMenuSeparator />
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
