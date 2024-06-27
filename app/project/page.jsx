@@ -115,7 +115,7 @@ function Project() {
 
 function ProjectCarousel({ project }) {
   return (
-    <div className='container xl:mx-auto my-5 h-full w-[30rem] xl:w-full xl:flex flex-row gap-10'>
+    <div className='container xl:mx-auto my-5 h-full xl:flex flex-row gap-10'>
       <Carousel className="xl:w-[50rem]  xl:h-full " opts={{ loop: true }} >
         <CarouselContent className="xl:h-full">
           {project.fileUrls && project.fileUrls.map((url, index) => (
@@ -135,8 +135,8 @@ function ProjectCarousel({ project }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="xl:flex hidden" />
+        <CarouselNext className="xl:flex hidden" />
       </Carousel>
       <div>{project.desc}</div>
     </div>
