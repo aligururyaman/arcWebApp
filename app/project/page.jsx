@@ -41,18 +41,22 @@ function Project() {
 
   const openIcMekanModal = () => {
     setIsIcMekanModalOpen(true);
+    document.body.classList.add('modal-open');
   };
 
   const closeIcMekanModal = () => {
     setIsIcMekanModalOpen(false);
+    document.body.classList.remove('modal-open');
   };
 
   const openDisMekanModal = () => {
     setIsDisMekanModalOpen(true);
+    document.body.classList.add('modal-open');
   };
 
   const closeDisMekanModal = () => {
     setIsDisMekanModalOpen(false);
+    document.body.classList.remove('modal-open');
   };
 
   return (
