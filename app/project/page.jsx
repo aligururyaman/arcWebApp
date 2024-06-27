@@ -64,14 +64,14 @@ function Project() {
         <div className='xl:h-[40rem] m-16'>
           <ProjectComp projects={icMekanProjects} onSelect={setSelectedIcMekanProject} />
         </div>
-        <div className='p-4 xl:h-[40rem] flex flex-col justify-between m-16 xl:w-full'>
+        <div className='xl:p-4 xl:h-[40rem] xl:flex flex-col justify-between xl:m-16 m-8 xl:w-full'>
           {selectedIcMekanProject && selectedIcMekanProject.mekan === 'icmekan' && (
             <div className=''>
               <h2 className='text-2xl mb-4'>{selectedIcMekanProject.title}</h2>
               <p>{selectedIcMekanProject.desc}</p>
             </div>
           )}
-          <div className='flex justify-end mt-auto'>
+          <div className='flex justify-end xl:mt-auto mt-4'>
             <Button variant="ghost" className='bg-gray-400 hover:text-accent transition-all' onClick={openIcMekanModal}>Projeyi Gör</Button>
           </div>
         </div>
@@ -115,8 +115,8 @@ function Project() {
 
 function ProjectCarousel({ project }) {
   return (
-    <div className='container mx-auto my-5 h-full xl:flex flex-row gap-10'>
-      <Carousel className="xl:w-[50rem] xl:h-full" opts={{ loop: true }} >
+    <div className='container xl:mx-auto my-5 h-full w-[30rem] xl:w-full xl:flex flex-row gap-10'>
+      <Carousel className="xl:w-[50rem]  xl:h-full " opts={{ loop: true }} >
         <CarouselContent className="xl:h-full">
           {project.fileUrls && project.fileUrls.map((url, index) => (
             <CarouselItem key={index} className="xl:h-full">
