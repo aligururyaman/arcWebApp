@@ -56,15 +56,15 @@ function Project() {
   };
 
   return (
-    <div>
+    <div className=''>
       <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'} px-20 w-full `}>
         <h1 className='text-3xl'>İç Mekan.</h1>
       </div>
-      <div className='flex flex-row w-full space-y-16'>
-        <div className='h-[40rem] m-16'>
+      <div className='xl:flex flex-row w-full xl:space-y-16'>
+        <div className='xl:h-[40rem] m-16'>
           <ProjectComp projects={icMekanProjects} onSelect={setSelectedIcMekanProject} />
         </div>
-        <div className='p-4 h-[40rem] flex flex-col justify-between m-16 w-full'>
+        <div className='p-4 xl:h-[40rem] flex flex-col justify-between m-16 xl:w-full'>
           {selectedIcMekanProject && selectedIcMekanProject.mekan === 'icmekan' && (
             <div className=''>
               <h2 className='text-2xl mb-4'>{selectedIcMekanProject.title}</h2>
@@ -80,8 +80,11 @@ function Project() {
       <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'} px-16 w-full`}>
         <h1 className='text-3xl'>Dış Mekan.</h1>
       </div>
-      <div className='flex flex-row w-full space-y-16'>
-        <div className='p-4 h-[40rem] flex flex-col justify-between m-16  w-full'>
+      <div className='xl:flex flex-row xl:w-full space-y-16'>
+        <div className='xl:h-[40rem] m-16'>
+          <ProjectComp projects={disMekanProjects} onSelect={setSelectedDisMekanProject} />
+        </div>
+        <div className='p-4 xl:h-[40rem] flex flex-col justify-between m-16  xl:w-full'>
           {selectedDisMekanProject && selectedDisMekanProject.mekan === 'disMekan' && (
             <div>
               <h2 className='text-2xl mb-4'>{selectedDisMekanProject.title}</h2>
@@ -92,9 +95,7 @@ function Project() {
             <Button variant="ghost" className='bg-gray-400 hover:text-accent transition-all' onClick={openDisMekanModal}>Projeyi Gör</Button>
           </div>
         </div>
-        <div className='h-[40rem] m-16'>
-          <ProjectComp projects={disMekanProjects} onSelect={setSelectedDisMekanProject} />
-        </div>
+
       </div>
 
       {isIcMekanModalOpen && (
@@ -114,20 +115,20 @@ function Project() {
 
 function ProjectCarousel({ project }) {
   return (
-    <div className='container mx-auto my-5 h-full flex flex-row gap-10'>
-      <Carousel className="w-[50rem] h-full" opts={{ loop: true }} >
-        <CarouselContent className="h-full">
+    <div className='container mx-auto my-5 h-full xl:flex flex-row gap-10'>
+      <Carousel className="xl:w-[50rem] xl:h-full" opts={{ loop: true }} >
+        <CarouselContent className="xl:h-full">
           {project.fileUrls && project.fileUrls.map((url, index) => (
-            <CarouselItem key={index} className="h-full flex-">
+            <CarouselItem key={index} className="xl:h-full">
               <Card className="relative h-full bg-primary">
-                <CardContent className="flex h-[40rem] items-center justify-center p-6">
+                <CardContent className="xl:flex xl:h-[40rem] items-center justify-center p-6">
                   <img
                     src={url}
                     alt={`Project Image ${index}`}
                     className="rounded-lg w-full h-full object-cover object-center"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-center rounded-b-lg">
-                    <h1 className="text-4xl">{project.title}</h1>
+                    <h1 className="xl:text-4xl">{project.title}</h1>
                   </div>
                 </CardContent>
               </Card>

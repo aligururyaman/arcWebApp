@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
-import { motion } from "framer-motion"
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@radix-ui/react-label';
@@ -33,22 +32,15 @@ function Contact() {
   }
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
-      }}
-      className='py-6'
-    >
+    <div>
       <div className={`transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'} px-16 my-10`}>
         <h1 className='text-3xl'>İletişim.</h1>
       </div>
-      <div className='mx-auto'>
+      <div className=''>
 
-        <div className='flex flex-col xl:flex-row space-y-52 m-10 gap-10'>
-          <div className='h-[30rem] w-[70rem] flex flex-col gap-5 rounded-xl bg-slate-700 px-10 py-10 md:grid-cols-2'>
-            <div className='flex flex-row gap-10'>
+        <div className='flex flex-col xl:flex-row space-y-16 m-10 '>
+          <div className='xl:h-[30rem] xl:w-[70rem] flex flex-col gap-5 rounded-xl bg-slate-700 px-10 py-10 md:grid-cols-2'>
+            <div className='xl:flex flex-row gap-10'>
               <div>
                 <Label htmlFor="firstName">Ad</Label>
                 <Input type="firstname" placeholder="Ad" className="w-72 bg-primary" />
@@ -71,7 +63,7 @@ function Contact() {
               <Button>Gönder</Button>
             </div>
           </div>
-          <div className='h-48 xl:w-[35rem] w-full rounded-xl bg-slate-700 flex flex-row justify-center overflow-hidden m-28'>
+          <div className='h-48 xl:w-[35rem] w-full rounded-xl bg-slate-700 flex flex-row justify-center overflow-hidden xl:m-28'>
 
             <div className='flex flex-row gap-3 justify-center items-center p-10'>
               <div className='flex flex-col items-center justify-center p-10 gap-3' onClick={() => handleClick('whatsapp')}>
@@ -93,7 +85,7 @@ function Contact() {
 
         </div>
       </div>
-    </motion.section>
+    </div>
   )
 }
 
