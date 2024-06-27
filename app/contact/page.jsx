@@ -43,17 +43,17 @@ function Contact() {
             <div className='xl:flex flex-row gap-10'>
               <div>
                 <Label htmlFor="firstName">Ad</Label>
-                <Input type="firstname" placeholder="Ad" className="w-72 bg-primary" />
+                <Input type="firstname" placeholder="Ad" className="xl:w-72 bg-primary" />
               </div>
 
               <div>
                 <Label htmlFor="lastName">Soyad</Label>
-                <Input type="lastname" placeholder="Soyad" className="w-72 bg-primary" />
+                <Input type="lastname" placeholder="Soyad" className="xl:w-72 bg-primary" />
               </div>
             </div>
             <div>
               <Label htmlFor="email">E-Mail</Label>
-              <Input type="email" placeholder="E-Mail" className="w-96 bg-primary" />
+              <Input type="email" placeholder="E-Mail" className="xl:w-96 bg-primary" />
             </div>
             <div>
               <Label htmlFor="msg">Mesajınız</Label>
@@ -66,15 +66,15 @@ function Contact() {
           <div className='h-48 xl:w-[35rem] w-full rounded-xl bg-slate-700 flex flex-row justify-center overflow-hidden xl:m-28'>
 
             <div className='flex flex-row gap-3 justify-center items-center p-10'>
-              <div className='flex flex-col items-center justify-center p-10 gap-3' onClick={() => handleClick('whatsapp')}>
+              <div className='flex flex-col items-center justify-center xl:p-10 p-4 gap-3' onClick={() => handleClick('whatsapp')}>
                 <FaWhatsapp size={40} />
                 <p>Whatsapp</p>
               </div>
-              <div className='flex flex-col items-center justify-center p-10 gap-3' onClick={() => handleClick('instagram')}>
+              <div className='flex flex-col items-center justify-center xl:p-10 p-4 gap-3' onClick={() => handleClick('instagram')}>
                 <FaInstagram size={40} />
                 <p>İnstagram</p>
               </div>
-              <div className='flex flex-col items-center justify-center p-10 gap-3' onClick={() => handleClick('x')}>
+              <div className='flex flex-col items-center justify-center xl:p-10 p-4 gap-3' onClick={() => handleClick('x')}>
                 <BsTwitterX size={40} />
                 <p>X</p>
               </div>

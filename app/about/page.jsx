@@ -13,8 +13,8 @@ function About() {
           <Image src={bg} width={800} height={800} className="pointer-events-none" />
         </div>
         <div className="relative z-20 flex flex-col gap-5">
-          <p className="text-2xl mx-16">Abdullah Küçükkılınç</p>
-          <p className="text-2xl font-bold mx-16">İç Mimar</p>
+          <p className="text-2xl">Abdullah Küçükkılınç</p>
+          <p className="text-2xl font-bold ">İç Mimar</p>
           <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus tenetur molestias soluta explicabo maiores facere vel, sequi quasi consequuntur accusantium perspiciatis similique eum harum nesciunt vitae dolore autem consectetur magni. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, quis quam. Molestiae doloremque ducimus voluptas, maiores necessitatibus odio exercitationem, maxime dolor quia inventore ratione soluta officiis deleniti nemo quam in!</p>
         </div>
       </div>
