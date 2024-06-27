@@ -41,7 +41,7 @@ function Footer() {
   }, []);
 
   return (
-    <div className='mt-10 w-full'>
+    <div className='mt-10 xl:w-full '>
       <div className='h-1 w-full border-b border-gray-500' />
       <div className='m-5 flex flex-row space-x-4 justify-end items-center'>
         <div className='flex flex-col space-y-3'>

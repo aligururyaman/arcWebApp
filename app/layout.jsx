@@ -13,13 +13,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-
     <html lang="en" className="h-full">
       <body className={`${jetBrainsMono.variable} flex flex-col min-h-screen`}>
         <LoginProvider>
           <Header />
-          {children}
-          <Footer />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer className="mt-auto" />
         </LoginProvider>
       </body>
     </html>
